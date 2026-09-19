@@ -83,30 +83,62 @@
                 @method('PUT')
 
 
-                <!-- CURRENT IMAGE -->
+                <!-- CURRENT MEDIA -->
                 <div class="mb-8">
 
                     <label
                         class="block text-sm font-semibold
                                text-slate-700 mb-3"
                     >
-                        Current Course Image
+                        Current Course Media
                     </label>
 
-                    <div
-                        class="w-full sm:w-72 h-48
-                               rounded-2xl overflow-hidden
-                               bg-slate-100
-                               border border-slate-200"
-                    >
 
-                        <img
-                            src="{{ asset('uploads/courses/' . $course->image) }}"
-                            alt="{{ $course->title }}"
-                            class="w-full h-full object-cover"
+                    @if($course->image)
+
+                        <!-- CURRENT IMAGE -->
+                        <div
+                            class="w-full sm:w-72 h-48
+                                   rounded-2xl overflow-hidden
+                                   bg-slate-100
+                                   border border-slate-200"
                         >
 
-                    </div>
+                            <img
+                                src="{{ asset('uploads/courses/' . $course->image) }}"
+                                alt="{{ $course->title }}"
+                                class="w-full h-full object-cover"
+                            >
+
+                        </div>
+
+
+                    @elseif($course->video)
+
+                        <!-- CURRENT VIDEO -->
+                        <div
+                            class="w-full sm:w-72
+                                   rounded-2xl overflow-hidden
+                                   bg-slate-100
+                                   border border-slate-200"
+                        >
+
+                            <video
+                                src="{{ asset('uploads/courses/' . $course->video) }}"
+                                controls
+                                class="w-full h-auto"
+                            ></video>
+
+                        </div>
+
+
+                    @else
+
+                        <p class="text-sm text-slate-400">
+                            No course media uploaded.
+                        </p>
+
+                    @endif
 
                 </div>
 
@@ -135,33 +167,105 @@
                                transition"
                     >
 
+                    @error('title')
+                        <p class="text-sm text-red-500 mt-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
+
                 </div>
 
 
-                <!-- IMAGE -->
+                <!-- CHANGE COURSE MEDIA -->
                 <div class="mb-6">
 
                     <label
                         class="block text-sm font-semibold
-                               text-slate-700 mb-2"
+                               text-slate-700 mb-3"
                     >
-                        Change Course Image
+                        Change Course Image or Video
                     </label>
 
-                    <input
-                        type="file"
-                        name="image"
-                        accept="image/*"
-                        class="w-full px-4 py-3 rounded-xl
-                               border border-slate-200
-                               bg-slate-50
-                               text-sm text-slate-600
-                               cursor-pointer"
-                    >
 
-                    <p class="text-xs text-slate-400 mt-2">
-                        Leave empty if you want to keep the
-                        current image.
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+
+                        <!-- IMAGE -->
+                        <div>
+
+                            <label
+                                for="image"
+                                class="block text-sm font-medium
+                                       text-slate-600 mb-2"
+                            >
+                                New Course Image
+                            </label>
+
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                accept="image/*"
+                                class="w-full px-4 py-3 rounded-xl
+                                       border border-slate-200
+                                       bg-slate-50
+                                       text-sm text-slate-600
+                                       cursor-pointer"
+                            >
+
+                            <p class="text-xs text-slate-400 mt-2">
+                                Upload an image to replace the current media.
+                            </p>
+
+                            @error('image')
+                                <p class="text-sm text-red-500 mt-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                        </div>
+
+
+                        <!-- VIDEO -->
+                        <div>
+
+                            <label
+                                for="video"
+                                class="block text-sm font-medium
+                                       text-slate-600 mb-2"
+                            >
+                                New Course Video
+                            </label>
+
+                            <input
+                                type="file"
+                                id="video"
+                                name="video"
+                                accept="video/mp4,video/webm,video/quicktime"
+                                class="w-full px-4 py-3 rounded-xl
+                                       border border-slate-200
+                                       bg-slate-50
+                                       text-sm text-slate-600
+                                       cursor-pointer"
+                            >
+
+                            <p class="text-xs text-slate-400 mt-2">
+                                Upload a video up to 100 MB.
+                            </p>
+
+                            @error('video')
+                                <p class="text-sm text-red-500 mt-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="text-xs text-slate-400 mt-3">
+                        Upload either an image or a video to replace the current media.
                     </p>
 
                 </div>
@@ -188,6 +292,12 @@
                                focus:border-slate-400
                                transition resize-y"
                     >{{ old('description', $course->description) }}</textarea>
+
+                    @error('description')
+                        <p class="text-sm text-red-500 mt-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
 
                 </div>
 
@@ -218,6 +328,12 @@
                     <p class="text-xs text-slate-400 mt-2">
                         Enter each feature on a separate line.
                     </p>
+
+                    @error('features')
+                        <p class="text-sm text-red-500 mt-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
 
                 </div>
 
@@ -258,6 +374,12 @@
                         >
 
                     </div>
+
+                    @error('price')
+                        <p class="text-sm text-red-500 mt-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
 
                 </div>
 
@@ -306,6 +428,7 @@
                     </a>
 
                 </div>
+
 
             </form>
 

@@ -89,17 +89,47 @@
                            transition duration-300"
                 >
 
-                    <!-- IMAGE -->
-                    <div class="relative h-52
-                                bg-slate-100 overflow-hidden">
+                    <!-- MEDIA -->
+                    <div
+                        class="relative h-52
+                               bg-slate-100 overflow-hidden"
+                    >
 
-                        <img
-                            src="{{ asset('uploads/courses/' . $course->image) }}"
-                            alt="{{ $course->title }}"
-                            class="w-full h-full object-cover
-                                   hover:scale-105
-                                   transition duration-500"
-                        >
+                        @if($course->image)
+
+                            <!-- IMAGE -->
+                            <img
+                                src="{{ asset('uploads/courses/' . $course->image) }}"
+                                alt="{{ $course->title }}"
+                                class="w-full h-full object-cover
+                                       hover:scale-105
+                                       transition duration-500"
+                            >
+
+                        @elseif($course->video)
+
+                            <!-- VIDEO -->
+                            <video
+                                src="{{ asset('uploads/courses/' . $course->video) }}"
+                                controls
+                                muted
+                                playsinline
+                                preload="metadata"
+                                class="w-full h-full object-cover"
+                            ></video>
+
+                        @else
+
+                            <!-- NO MEDIA -->
+                            <div
+                                class="w-full h-full
+                                       flex items-center justify-center
+                                       text-slate-400 text-sm"
+                            >
+                                No Media
+                            </div>
+
+                        @endif
 
 
                         <!-- STATUS -->

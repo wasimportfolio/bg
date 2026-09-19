@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $fillable = [
-        'title',
-        'image',
-        'description',
-        'features',
-        'price',
-        'status',
-    ];
+    'title',
+    'features',
+    'price',
+    'image',
+    'video',
+    'status',
+];
 }

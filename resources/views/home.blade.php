@@ -95,12 +95,29 @@
     <article class="class-card">
 
         <div class="card-image">
-            <img
-                src="{{ asset('uploads/courses/' . $course->image) }}"
-                alt="{{ $course->title }}"
-                loading="lazy"
-            >
-        </div>
+
+    @if($course->image)
+
+        <img
+            src="{{ asset('uploads/courses/' . $course->image) }}"
+            alt="{{ $course->title }}"
+            loading="lazy"
+        >
+
+    @elseif($course->video)
+
+        <video
+            src="{{ asset('uploads/courses/' . $course->video) }}"
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            style="width:100%; height:100%; object-fit:cover;"
+        ></video>
+
+    @endif
+
+</div>
 
         <div class="card-content">
 

@@ -119,38 +119,92 @@
                 </div>
 
 
-                <!-- IMAGE -->
-                <div class="mb-6">
+               <!-- COURSE MEDIA -->
+<div class="mb-6">
 
-                    <label
-                        for="image"
-                        class="block text-sm font-semibold
-                               text-slate-700 mb-2"
-                    >
-                        Course Image
-                    </label>
+    <label class="block text-sm font-semibold text-slate-700 mb-3">
+        Course Image or Video
+    </label>
 
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        accept="image/*"
-                        required
-                        class="w-full px-4 py-3 rounded-xl
-                               border border-slate-200
-                               bg-slate-50
-                               text-sm text-slate-600
-                               cursor-pointer"
-                    >
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                    @error('image')
-                        <p class="text-sm text-red-500 mt-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
+        <!-- IMAGE -->
+        <div>
+            <label
+                for="image"
+                class="block text-sm font-medium text-slate-600 mb-2"
+            >
+                Course Image
+            </label>
 
-                </div>
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                class="w-full px-4 py-3 rounded-xl
+                       border border-slate-200
+                       bg-slate-50
+                       text-sm text-slate-600
+                       cursor-pointer"
+            >
 
+            <p class="text-xs text-slate-400 mt-2">
+                Upload an image if you want to use an image.
+            </p>
+
+            @error('image')
+                <p class="text-sm text-red-500 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+        </div>
+
+        <!-- VIDEO -->
+        <div>
+            <label
+                for="video"
+                class="block text-sm font-medium text-slate-600 mb-2"
+            >
+                Course Video
+            </label>
+
+            <input
+                type="file"
+                id="video"
+                name="video"
+                accept="video/mp4,video/webm,video/quicktime"
+                class="w-full px-4 py-3 rounded-xl
+                       border border-slate-200
+                       bg-slate-50
+                       text-sm text-slate-600
+                       cursor-pointer"
+            >
+
+            <p class="text-xs text-slate-400 mt-2">
+                Upload a video up to 100 MB.
+            </p>
+
+            @error('video')
+                <p class="text-sm text-red-500 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+        </div>
+
+    </div>
+
+    @error('media')
+        <p class="text-sm text-red-500 mt-2">
+            {{ $message }}
+        </p>
+    @enderror
+
+    <p class="text-xs text-slate-400 mt-3">
+        Upload either an image or a video for this course.
+    </p>
+
+</div>
 
                 <!-- DESCRIPTION -->
                 <div class="mb-6">
