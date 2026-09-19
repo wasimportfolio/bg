@@ -150,12 +150,9 @@
 
     <div class="upcoming-card">
       
-      @if($upcoming && $upcoming->image)
+     @if($upcoming && $upcoming->image)
     <img
-        src="{{ file_exists(public_path('uploads/upcoming/' . $upcoming->image))
-            ? asset('uploads/upcoming/' . $upcoming->image)
-            : asset('assets/images/' . $upcoming->image) }}"
-        alt="{{ $upcoming->title }}" loading="lazy"
+        src="{{ asset('uploads/upcoming/' . $upcoming->image) }}"
     >
 @endif
       <div class="upcoming-info">
