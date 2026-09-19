@@ -274,10 +274,7 @@
 @if($about && $about->image)
 
     <img
-        src="{{ file_exists(public_path('uploads/about/' . $about->image))
-            ? asset('uploads/about/' . $about->image)
-            : asset('assets/images/' . $about->image) }}"
-        alt="{{ $about->title }}" loading="lazy"
+       src="{{ asset('uploads/about/' . $about->image) }}"
     >
 
 @endif
