@@ -27,7 +27,7 @@ class AdminGalleryController extends Controller
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->move(
-            public_path('uploads/gallery'),
+            upload_path('gallery'),
             $imageName
         );
 
@@ -79,7 +79,7 @@ public function update(Request $request, Gallery $gallery)
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->move(
-            public_path('uploads/gallery'),
+            upload_path('gallery'),
             $imageName
         );
 

@@ -31,7 +31,7 @@ public function store(Request $request)
     $imageName = time() . '.' . $request->image->extension();
 
     $request->image->move(
-        public_path('uploads/courses'),
+        upload_path('courses'),
         $imageName
     );
 
@@ -75,7 +75,7 @@ public function update(Request $request, Course $course)
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->move(
-            public_path('uploads/courses'),
+            upload_path('courses'),
             $imageName
         );
 

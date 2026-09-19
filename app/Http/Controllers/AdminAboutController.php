@@ -38,7 +38,7 @@ class AdminAboutController extends Controller
             $imageName = time() . '.' . $request->image->extension();
 
             $request->image->move(
-                public_path('uploads/about'),
+                upload_path('about'),
                 $imageName
             );
 

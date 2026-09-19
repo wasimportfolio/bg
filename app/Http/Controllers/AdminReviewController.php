@@ -35,7 +35,7 @@ class AdminReviewController extends Controller
             $imageName = time() . '.' . $request->image->extension();
 
             $request->image->move(
-                public_path('uploads/reviews'),
+                upload_path('reviews'),
                 $imageName
             );
         }
@@ -78,7 +78,7 @@ class AdminReviewController extends Controller
             $imageName = time() . '.' . $request->image->extension();
 
             $request->image->move(
-                public_path('uploads/reviews'),
+                upload_path('reviews'),
                 $imageName
             );
 
